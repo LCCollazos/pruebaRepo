@@ -57,6 +57,10 @@ import { AbonosService } from '../common/services/abonos.service';
 
 //NUEVO NUEVO NUEVO
 
+
+
+//NUEVOS CAMBIOS DESDE DESARROLADOR 2 CON CONFLICTOS PUSH
+
 export class HomePage {
 
   @ViewChild('myTabs', { static: true }) tabs: IonTabs | undefined;
