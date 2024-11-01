@@ -57,6 +57,10 @@ import { AbonosService } from '../common/services/abonos.service';
 
 //NUEVO NUEVO NUEVO
 
+
+
+//CUARTO PRUEBA DE PUSH CON CAMBIO Y CONFICTOS EN GIT DESARROLLADOR 1
+
 export class HomePage {
 
   @ViewChild('myTabs', { static: true }) tabs: IonTabs | undefined;
