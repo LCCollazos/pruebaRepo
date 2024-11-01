@@ -42,6 +42,8 @@ import { AbonosService } from '../common/services/abonos.service';
 
 })
 
+// esta es una prueba de adicion al codigo nuevo con nuevo pushhhhhh
+
 export class HomePage {
 
   @ViewChild('myTabs', { static: true }) tabs: IonTabs | undefined;
@@ -317,7 +319,7 @@ export class HomePage {
     this.isNewEvent = true
     this.formEvent.controls['id_evento'].setValue(item.id_evento)
     this.formEvent.controls['lugar'].setValue(item.lugar)
-    
+
     this.formEvent.controls['fecha_evento'].setValue(item.fecha_evento)
     this.formEvent.controls['nombre_quinceanera'].setValue(item.nombre_quinceanera)
     this.formEvent.controls['nombre_mama'].setValue(item.nombre_mama)
