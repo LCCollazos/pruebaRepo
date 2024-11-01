@@ -1,0 +1,144 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <ion-title>Personal</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="NuevoPersonal()" [strong]="true"><ion-icon name="add-circle-outline"></ion-icon>&#160;Nuevo</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  @defer (on viewport) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Personal Activo</ion-card-title>
+        <ion-card-subtitle>Vals Agencia de Edecanes</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          @for (item of ListPersonalActivo; track item.id_personal) {
+            <ion-item [button]="true" (click)="OpenDetailPersonal(item)">
+              <ion-thumbnail slot="start">
+                <ion-icon name="person-circle-outline" style="font-size: 40px;"></ion-icon>
+              </ion-thumbnail>
+              <ion-label>{{item.nombre}} | <p style="color: rgb(39, 116, 192);">{{item.rol}}</p></ion-label>
+            </ion-item>
+          }
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- MODAL NEW EVENTO -->
+    <ion-modal [isOpen]="isNew" (ionModalDidDismiss)="cancelNewPerson()">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>
+              @if (isUpdate) {
+                Actualizacion
+              }@else {
+                Nuevo Registro
+              }
+            </ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="cancelNewPerson()" [strong]="true">Cancelar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+              <form [formGroup]="formPersonal" (ngSubmit)="formPersonal.valid">
+                <ion-input style="display: none;" id="id_personal" name="id_personal" formControlName="id_personal"></ion-input>
+                <br>
+                <ion-list>
+                  <ion-item>
+                    <ion-icon name="person-add-outline"></ion-icon>&#160;&#160;
+                    <ion-input labelPlacement="floating"
+                    type="text"
+                    [clearInput]="true"
+                    label="Nombre"
+                    id="nombre"
+                    formControlName="nombre"
+                    placeholder="Nombre de la persona"
+                    required="required"
+                    >
+                    </ion-input>
+                  </ion-item>
+
+                  <ion-item>
+                    <ion-icon name="people-outline"></ion-icon>&#160;&#160;
+                    <ion-select
+                    labelPlacement="floating"
+                    label="Rol"
+                    id="rol"
+                    formControlName="rol"
+                    required="required"
+                    >
+                    @for (item of ddlRol; track item.value) {
+                      <ion-select-option value="{{item.value}}">{{item.name}}</ion-select-option>
+                    }
+                    </ion-select>
+                  </ion-item>
+
+
+                </ion-list>
+
+                <ion-card>
+                  <ion-card-content style="text-align: center;">
+                    @if (isUpdate) {
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col>
+                            <ion-button type="submit" id="ActualizarEvento" style="width: 150px;" [disabled]="formPersonal.invalid"><ion-icon name="pencil-outline"></ion-icon>&#160;Actualizar</ion-button><br>
+                            <ion-action-sheet trigger="ActualizarEvento" header="¿ESTA SEGURO?" [buttons]="actionSheetButtonsUpdate"></ion-action-sheet>
+                          </ion-col>
+                          <ion-col>
+                            <ion-button type="submit" id="eliminarPersona" style="width: 150px;" role="destructive" color="danger"><ion-icon name="trash-outline"></ion-icon>&#160;Eliminar Registro</ion-button>
+                            <ion-action-sheet trigger="eliminarPersona" header="¿ESTA SEGURO?" [buttons]="actionSheetButtonsDelete"></ion-action-sheet>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    }@else {
+                      <ion-button type="submit" id="RegistrarEvento" (click)="addPersonal()" style="width: 150px;" [disabled]="formPersonal.invalid">Registrar</ion-button>
+                    }
+                  </ion-card-content>
+                </ion-card>
+              </form>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  }
+  @placeholder {
+    <ion-title>Sin Registros</ion-title>
+  }
+  @loading(minimum 1s) {
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-list-header>
+            <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+          </ion-list-header>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+              <h3>
+                <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  }
+
+</ion-content>
+

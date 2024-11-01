@@ -1,0 +1,80 @@
+<ion-app>
+  <!-- <ion-menu contentId="main-content" type="push">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Opciones</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-accordion-group>
+        <ion-menu-toggle>
+          <ion-item button="true" (click)="NavegarUrlEventos()">
+            <ion-icon name="home-outline"></ion-icon>&#160;<ion-label>Inicio</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-accordion>
+          <ion-item slot="header" color="light">
+            <ion-icon name="laptop-outline"></ion-icon>&#160;<ion-label>Eventos</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-menu-toggle>
+              <ion-item button="true" (click)="NavegarUrlEventos()">
+                <ion-icon name="pencil-outline"></ion-icon>&#160;<ion-label>Gestionar Eventos</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </div>
+        </ion-accordion>
+        <ion-accordion>
+          <ion-item slot="header" color="light">
+            <ion-icon name="people-circle-outline"></ion-icon>&#160;<ion-label>Personal</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-menu-toggle>
+              <ion-item button="true" (click)="NavegarUrlPersonal()">
+                <ion-icon name="pencil-outline"></ion-icon>&#160;<ion-label>Gestionar Personal</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </div>
+        </ion-accordion>
+        <ion-accordion>
+          <ion-item slot="header" color="light">
+            <ion-icon name="server-outline"></ion-icon>&#160;<ion-label>Servicios</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-menu-toggle>
+              <ion-item button="true" (click)="NavegarUrlServicios()">
+                <ion-icon name="pencil-outline"></ion-icon>&#160;<ion-label>Gestionar Servicios</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+
+    </ion-content>
+  </ion-menu> -->
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+  <ion-tabs swipeGesture="true">
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home" animated="true">
+        <ion-icon name="desktop-outline"></ion-icon>
+        Eventos
+      </ion-tab-button>
+      <ion-tab-button tab="personal" animated="true">
+        <ion-icon name="people-outline"></ion-icon>
+        Personal
+      </ion-tab-button>
+      <ion-tab-button tab="servicios" animated="true">
+        <ion-icon name="cube-outline"></ion-icon>
+        Servicios
+      </ion-tab-button>
+      <ion-tab-button tab="protocolo" animated="true">
+        <ion-icon name="document-text-outline"></ion-icon>
+        Protocolo
+      </ion-tab-button>
+      <!-- <ion-tab-button tab="restore-data" animated="true">
+        <ion-icon name="settings-outline"></ion-icon>
+        Ajustes
+      </ion-tab-button> -->
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-app>

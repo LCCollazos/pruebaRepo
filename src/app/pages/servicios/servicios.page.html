@@ -1,0 +1,147 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <ion-title>Servicios</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="NuevoServicio()" [strong]="true"><ion-icon name="add-circle-outline"></ion-icon>&#160;Nuevo</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  @defer (on viewport) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Servicios Activos</ion-card-title>
+        <ion-card-subtitle>Vals Agencia de Edecanes</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          @for (item of ListServicios; track item.id_servicio) {
+            <ion-item [button]="true" (click)="OpenDetailServicio(item)">
+              <ion-thumbnail slot="start">
+                <ion-icon name="bookmark-outline" style="font-size: 35px;"></ion-icon>
+              </ion-thumbnail>
+              <ion-label>{{item.servicio}} | <p style="color: rgb(39, 116, 192);">${{item.valor| number}}</p></ion-label>
+            </ion-item>
+          }
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- MODAL NEW EVENTO -->
+    <ion-modal [isOpen]="isNew" (ionModalDidDismiss)="cancelNewServicio()">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>
+              @if (isUpdate) {
+                Actualizacion
+              }@else {
+                Nuevo Registro
+              }
+            </ion-title>
+            <ion-buttons slot="end">
+              @if (isUpdate) {
+                <ion-button (click)="cancelNewServicio()" [strong]="true">Salir</ion-button>
+              }@else {
+                <ion-button (click)="cancelNewServicio()" [strong]="true">Cancelar</ion-button>
+              }
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+              <form [formGroup]="formServicio" (ngSubmit)="formServicio.valid">
+                <ion-input style="display: none;" id="id_servicio" name="id_servicio" formControlName="id_servicio"></ion-input>
+                <br>
+                <ion-list>
+                  <ion-item>
+                    <ion-icon name="bookmarks-outline"></ion-icon>&#160;&#160;
+                    <ion-input labelPlacement="floating"
+                    type="text"
+                    [clearInput]="true"
+                    label="Servicio"
+                    id="servicio"
+                    formControlName="servicio"
+                    placeholder="Nombre del servicio"
+                    required="required"
+                    >
+                    </ion-input>
+                  </ion-item>
+
+                  <ion-item>
+                    <ion-icon name="cash-outline"></ion-icon>&#160;&#160;
+                    <ion-input labelPlacement="floating"
+                    type="number"
+                    [clearInput]="true"
+                    label="Valor del Servicio"
+                    id="valor"
+                    formControlName="valor"
+                    placeholder="0"
+                    required="required"
+                    >
+                    </ion-input>
+                  </ion-item>
+
+
+                </ion-list>
+
+                <ion-card>
+                  <ion-card-content style="text-align: center;">
+                    @if (isUpdate) {
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col>
+                            <ion-button type="submit" id="Actualizar" style="width: 150px;" [disabled]="formServicio.invalid"><ion-icon name="pencil-outline"></ion-icon>&#160;Actualizar</ion-button><br>
+                            <ion-action-sheet trigger="Actualizar" header="¿ESTA SEGURO?" [buttons]="actionSheetButtonsUpdate"></ion-action-sheet>
+                          </ion-col>
+                          <ion-col>
+                            <ion-button type="submit" id="eliminar" style="width: 150px;" role="destructive" color="danger"><ion-icon name="trash-outline"></ion-icon>&#160;Eliminar</ion-button>
+                            <ion-action-sheet trigger="eliminar" header="¿ESTA SEGURO?" [buttons]="actionSheetButtonsDelete"></ion-action-sheet>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    }@else {
+                      <ion-button type="submit" id="Registrar" (click)="addServicio()" style="width: 150px;" [disabled]="formServicio.invalid">Registrar</ion-button>
+                    }
+                  </ion-card-content>
+                </ion-card>
+              </form>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  }
+  @placeholder {
+    <ion-title>Sin Registros</ion-title>
+  }
+  @loading(minimum 1s) {
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-list-header>
+            <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+          </ion-list-header>
+          <ion-item>
+            <ion-thumbnail slot="start">
+              <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+              <h3>
+                <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  }
+
+</ion-content>
+

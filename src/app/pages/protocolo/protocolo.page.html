@@ -1,0 +1,81 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Protocolo</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="loadProtocoloEstandar()" [strong]="true">Cargar Estandar<ion-icon name="arrow-down-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Protocolo</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <form [formGroup]="formProtocolo" (ngSubmit)="formProtocolo.valid">
+    <ion-card class="cardProtocolo">
+      <ion-card-content>
+        <ion-textarea
+        [autoGrow]="true"
+        labelPlacement="stacked"
+        label="Protocolo"
+        id="protocoloEstandar"
+        formControlName="descripcion"
+        ></ion-textarea>
+      </ion-card-content>
+    </ion-card>
+    <ion-item style="text-align: center;">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button id="btnGuardar" type="submit" style="width: 80px; height: 40px;" (click)="saveProtocolo()">Guardar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Variables Protocolo</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Nombre Quinceañera : <b>{{nomQuinces}}</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nombre Mama : <b>{{nomMama}}</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nombre Papa : <b>{{nomPapa}}</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nombre Hermano/a : <b>{{nomHermano}}</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nombre Abuelo/a : <b>{{nomAbue}}</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nombre Zapatillas : <b>{{nomZapatillas}}</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>rol Zapatillas : <b>{{rolZapatillas}}</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nombre Anillo : <b>{{nomAnillo}}</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>rol Anillo : <b>{{rolAnillo}}</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Nombre Corona : <b>{{nomCorona}}</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>rol Corona : <b>{{rolCorona}}</b></ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</form>
+
+</ion-content>
