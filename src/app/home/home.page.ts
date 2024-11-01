@@ -44,6 +44,13 @@ import { AbonosService } from '../common/services/abonos.service';
 
 // esta es una prueba de adicion al codigo nuevo con nuevo pushhhhhh
 
+
+
+
+//SEGUNDO CAMBIO PARA RAMA PERSONAL RA MA GIT Y DEMAS
+
+//NUENAS NUEVAS
+
 export class HomePage {
 
   @ViewChild('myTabs', { static: true }) tabs: IonTabs | undefined;
